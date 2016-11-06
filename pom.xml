@@ -17,6 +17,7 @@
     </distributionManagement>
 
     <properties>
+        <github.global.server>github</github.global.server>
         <java.version>1.8</java.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -70,7 +71,6 @@
                     <includes>
                         <include>**/*</include>
                     </includes>
-                    <oauth2Token>9f81ba1cd1e181d577d2340005e6ae0ae1547099</oauth2Token>
                     <repositoryName>common</repositoryName>      <!-- github repo name -->
                     <repositoryOwner>racemates</repositoryOwner>      <!-- github repo name -->
                 </configuration>
