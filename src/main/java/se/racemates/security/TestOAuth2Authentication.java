@@ -8,24 +8,19 @@ import org.springframework.security.oauth2.provider.OAuth2Request;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Map;
 import java.util.UUID;
 
 public class TestOAuth2Authentication extends OAuth2Authentication  {
 
     public final static String END_USER_TOKEN = UUID.randomUUID().toString();
 
-    public static void withUser(final String oauthDetails) {
+    public static void withUser(final Map<String, String> oauthDetails) {
         TestOAuth2Authentication.oauthDetails = oauthDetails;
     }
 
 
-    private static String oauthDetails = "{" +
-            "\"userId\":\"" +
-            UUID.randomUUID().toString() +
-            "\"," +
-            "\"email\":\"johan.granlund@racemates.se\"," +
-            "\"created\":\"1977-04-26\"" +
-            "}";
+    private static Map oauthDetails;
 
 
     private final static OAuth2Request request =  new OAuth2Request(
