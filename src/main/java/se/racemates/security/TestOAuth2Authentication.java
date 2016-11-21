@@ -1,37 +1,26 @@
 package se.racemates.security;
 
 
-import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.OAuth2Request;
 
-import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Map;
 import java.util.UUID;
 
 public class TestOAuth2Authentication extends OAuth2Authentication  {
 
     public final static String END_USER_TOKEN = UUID.randomUUID().toString();
 
-    public static void withUser(final Object object) {
-        try {
-            oauthDetails = new ObjectMapper().writeValueAsString(object);
-        } catch (final IOException e) {
-            throw new RuntimeException(e);
-        }
+    public static void withUser(final Map<String, String> oauthDetails) {
+        TestOAuth2Authentication.oauthDetails = oauthDetails;
     }
 
 
-    private static String oauthDetails = "{" +
-            "\"userId\":\"" +
-            UUID.randomUUID().toString() +
-            "\"," +
-            "\"email\":\"johan.granlund@racemates.se\"," +
-            "\"created\":\"1977-04-26\"" +
-            "}";
+    private static Map oauthDetails;
 
 
     private final static OAuth2Request request =  new OAuth2Request(
