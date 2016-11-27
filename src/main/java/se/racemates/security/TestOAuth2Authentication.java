@@ -11,18 +11,11 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.UUID;
 
-public class TestOAuth2Authentication extends OAuth2Authentication  {
+public class TestOAuth2Authentication extends OAuth2Authentication {
 
     public static final String END_USER_TOKEN = UUID.randomUUID().toString();
 
-    public static void withUser(final Map<String, String> oauthDetails) {
-        TestOAuth2Authentication.oauthDetails = oauthDetails;
-    }
-
-    private static Map oauthDetails;
-
-
-    private static final OAuth2Request request =  new OAuth2Request(
+    private static final OAuth2Request request = new OAuth2Request(
             Collections.emptyMap(),
             "test-client",
             Collections.emptyList(),
@@ -34,11 +27,12 @@ public class TestOAuth2Authentication extends OAuth2Authentication  {
             Collections.emptyMap()
     );
 
+    private final Map oauthDetails;
 
 
-
-    TestOAuth2Authentication() {
+    TestOAuth2Authentication(final Map oauthDetails) {
         super(request, null);
+        this.oauthDetails = oauthDetails;
     }
 
     @Override

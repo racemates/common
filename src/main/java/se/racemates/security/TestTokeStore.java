@@ -1,6 +1,7 @@
 package se.racemates.security;
 
 
+import com.google.common.collect.ImmutableMap;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.common.OAuth2RefreshToken;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
@@ -56,7 +57,11 @@ public class TestTokeStore extends InMemoryTokenStore {
             return END_USER_TOKEN;
         }
     };
+    private Map<String, String> oauthDetails;
 
+    public void withUser(final ImmutableMap<String, String> oauthDetails) {
+        this.oauthDetails = oauthDetails;
+    }
 
     @Override
     public OAuth2AccessToken readAccessToken(final String tokenValue) {
@@ -70,6 +75,6 @@ public class TestTokeStore extends InMemoryTokenStore {
 
     @Override
     public OAuth2Authentication readAuthentication(final String token) {
-        return new TestOAuth2Authentication();
+        return new TestOAuth2Authentication(oauthDetails);
     }
 }
