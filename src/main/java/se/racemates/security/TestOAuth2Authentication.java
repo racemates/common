@@ -13,17 +13,16 @@ import java.util.UUID;
 
 public class TestOAuth2Authentication extends OAuth2Authentication  {
 
-    public final static String END_USER_TOKEN = UUID.randomUUID().toString();
+    public static final String END_USER_TOKEN = UUID.randomUUID().toString();
 
     public static void withUser(final Map<String, String> oauthDetails) {
         TestOAuth2Authentication.oauthDetails = oauthDetails;
     }
 
-
     private static Map oauthDetails;
 
 
-    private final static OAuth2Request request =  new OAuth2Request(
+    private static final OAuth2Request request =  new OAuth2Request(
             Collections.emptyMap(),
             "test-client",
             Collections.emptyList(),
