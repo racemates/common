@@ -1,7 +1,6 @@
 package se.racemates.lang;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import org.jetbrains.annotations.NotNull;
 
 @JsonSerialize(using = WrapperSerializer.class)
 public abstract class Wrapper<T> {
@@ -12,17 +11,18 @@ public abstract class Wrapper<T> {
         this.value = value;
     }
 
-    @NotNull
     public T get() {
         return value;
     }
 
     @Override
-    public boolean equals(final Object other) {
-        return this
-                .getClass()
-                .isInstance(other)
-                && ((Wrapper<T>) other).value.equals(this.value);
+    public boolean equals(final Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        final Wrapper<?> wrapper = (Wrapper<?>) o;
+
+        return value.equals(wrapper.value);
     }
 
     @Override
