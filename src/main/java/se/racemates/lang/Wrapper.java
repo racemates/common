@@ -1,10 +1,11 @@
 package se.racemates.lang;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import org.jetbrains.annotations.NotNull;
+
+import java.io.Serializable;
 
 @JsonSerialize(using = WrapperSerializer.class)
-public abstract class Wrapper<T> {
+public abstract class Wrapper<T> implements Serializable {
 
     private final T value;
 
@@ -12,7 +13,6 @@ public abstract class Wrapper<T> {
         this.value = value;
     }
 
-    @NotNull
     public T get() {
         return value;
     }
