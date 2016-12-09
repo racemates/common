@@ -2,10 +2,8 @@ package se.racemates.lang;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-import java.io.Serializable;
-
 @JsonSerialize(using = WrapperSerializer.class)
-public abstract class Wrapper<T> implements Serializable {
+public abstract class Wrapper<T> {
 
     private final T value;
 
@@ -18,11 +16,13 @@ public abstract class Wrapper<T> implements Serializable {
     }
 
     @Override
-    public boolean equals(final Object other) {
-        return this
-                .getClass()
-                .isInstance(other)
-                && ((Wrapper<T>) other).value.equals(this.value);
+    public boolean equals(final Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        final Wrapper<?> wrapper = (Wrapper<?>) o;
+
+        return value.equals(wrapper.value);
     }
 
     @Override
