@@ -7,7 +7,7 @@ import org.thymeleaf.templateresolver.TemplateResolver;
 
 import java.util.Properties;
 
-public class EmailUtils {
+public final class EmailUtils {
 
     private EmailUtils() {}
 
@@ -32,7 +32,7 @@ public class EmailUtils {
         return templateResolver;
     }
 
-    public static JavaMailSenderImpl getJavaMailSenderFromSettings(MailSettings mailSettings) {
+    public static JavaMailSenderImpl getJavaMailSenderFromSettings(final MailSettings mailSettings) {
 
         final JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
 
